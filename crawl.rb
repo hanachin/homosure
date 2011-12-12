@@ -54,11 +54,11 @@ urls.each do |u|
     :created_at => Time.now()
   }
   
-  if DB[:urls].where(:url => u).count.zero?
+  if DB[:urls].where(:url => expanded_url).count.zero?
     url_id = DB[:urls].insert url_data
     urls_for_tweet << url_data
   else
-    url_id = DB[:urls].where(:url => u).first[:id]
+    url_id = DB[:urls].where(:url => expanded_url).first[:id]
   end
   
   if u != expanded_url
